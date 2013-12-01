@@ -1,0 +1,7 @@
+#!/bin/bash
+
+declare wipe="\033[1m\033[0m"
+declare color='\e[93m'
+
+cat $HOME/.bash.d/bashrc >> $HOME/.bashrc
+echo -e "Settings have been saved to your ${color}.bashrc${wipe} file."
