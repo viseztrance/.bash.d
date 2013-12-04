@@ -10,7 +10,7 @@ __is_git_repo() {
 }
 
 __is_dirty_repo() {
-    [ $(git diff --shortstat | wc -l) != "0" ]
+    [ $(git status --porcelain --untracked-files=no | wc -l) != "0" ]
 }
 
 __get_git_branch() {
