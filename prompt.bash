@@ -5,6 +5,17 @@ declare blue="\[\e[94m\]"
 declare cyan="\[\e[96m\]"
 declare wipe="\[\033[1m\033[0m\]"
 
+__truncate_path() {
+    local path=$1
+    local max=$2
+    local length=${#path}
+    if (( length > max )); then
+        echo "…${path:((length - max))}"
+    else
+        echo $path
+    fi
+}
+
 __is_git_repo() {
     git rev-parse --is-inside-work-tree > /dev/null 2>&1
 }
@@ -19,6 +30,10 @@ __get_git_branch() {
 
 __get_git_root() {
     git rev-parse --show-toplevel
+}
+
+__get_git_relative_path() {
+    git rev-parse --show-prefix
 }
 
 __is_ruby_project() {
@@ -50,8 +65,25 @@ __get_development_prompt() {
     fi
 }
 
+__get_working_directory() {
+    local prefix
+    local path
+    local max=$(printf %.$2f $(bc <<< "$(tput cols) * 0.5"))
+    if __is_git_repo; then
+        prefix="↳"
+        path=$(basename $(__get_git_root))/$(__get_git_relative_path)
+    else
+        prefix="➜"
+        path=${PWD/#$HOME/\~}
+    fi
+    if ((${#path} > max)); then
+        path=$(__truncate_path $path $max)
+    fi
+    echo -n "${red}$prefix${wipe} ${cyan}${path%/}${wipe}"
+}
+
 set_prompt() {
-    PS1="${red}➜${wipe} ${cyan}\W${wipe} $(__get_development_prompt)"
+    PS1="$(__get_working_directory) $(__get_development_prompt)"
 }
 
 PROMPT_COMMAND=set_prompt
