@@ -12,11 +12,9 @@ My personal bash configuration files. Mostly revolving around `git` and `ruby`.
 ## Installation
 
 ```bash
-cd ~ 
-git clone <repo-url>
-cd .bash.d
-./install
+git clone git://github.com/viseztrance/.bash.d.git ~/.bash.d && sh ~/.bash.d/install
 ```
+
 ## License
 
 This package is licensed under the MIT license and/or the Creative Commons Attribution-ShareAlike.
