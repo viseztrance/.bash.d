@@ -9,3 +9,7 @@ echo -e "Settings have been saved to your ${color}.bashrc${wipe} file."
 if [ ! -f $HOME/.inputrc ]; then
     ln -s $HOME/.bash.d/inputrc $HOME/.inputrc
 fi
+
+if [ ! -f $HOME/.gemrc ]; then
+    ln -s $HOME/.bash.d/gemrc $HOME/.gemrc
+fi
