@@ -1,4 +1,4 @@
-declare red="\[\e[31m\]"
+declare red="\[\e[38;05;210m\]"
 declare green="\[\e[92m\]"
 declare yellow="\[\e[93m\]"
 declare blue="\[\e[94m\]"
@@ -53,7 +53,7 @@ __get_git_info() {
 }
 
 __get_ruby_info() {
-    echo -n "${red}⚡${wipe} ${blue}ruby:(${wipe}${red}$(__get_ruby_version)${wipe}${blue})${wipe} ${red}⚡${wipe} "
+    echo -n "${red}✵${wipe} ${blue}ruby:(${wipe}${red}$(__get_ruby_version)${wipe}${blue})${wipe} ${red}✵${wipe} "
 }
 
 __get_development_prompt() {
