@@ -25,7 +25,7 @@ __is_dirty_repo() {
 }
 
 __get_git_branch() {
-    git symbolic-ref --short HEAD
+    git symbolic-ref --short HEAD 2> /dev/null || git rev-parse --short HEAD 2> /dev/null
 }
 
 __get_git_root() {
