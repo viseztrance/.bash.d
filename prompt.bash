@@ -59,7 +59,9 @@ __get_ruby_info() {
 __get_development_prompt() {
     if __is_git_repo; then
         if __is_ruby_project; then
-            __get_ruby_info
+            if [ "$SHOW_RUBY_VERSION" = true ]; then
+                __get_ruby_info
+            fi
         fi
         __get_git_info
     fi
