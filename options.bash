@@ -11,5 +11,5 @@ export HISTFILESIZE=50000
 export HISTSIZE=10000
 export HISTCONTROL="erasedups:ignoreboth"
 export HISTIGNORE="&:ls:[bf]g:exit"
-
+export TERM="xterm-256color"
 export EDITOR="vim"
