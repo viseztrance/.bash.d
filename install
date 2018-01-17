@@ -3,13 +3,13 @@
 declare color='\e[93m'
 declare wipe="\033[1m\033[0m"
 
-cat $HOME/.bash.d/bashrc >> $HOME/.bashrc
+echo "source $HOME/.bash.d/boot" >> $HOME/.bashrc
 echo -e "Settings have been saved to your ${color}.bashrc${wipe} file."
 
 if [ ! -f $HOME/.inputrc ]; then
-    ln -s $HOME/.bash.d/inputrc $HOME/.inputrc
+    ln -s $HOME/.bash.d/dot-files/inputrc $HOME/.inputrc
 fi
 
 if [ ! -f $HOME/.gemrc ]; then
-    ln -s $HOME/.bash.d/gemrc $HOME/.gemrc
+    ln -s $HOME/.bash.d/dot-files/gemrc $HOME/.gemrc
 fi

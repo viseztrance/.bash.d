@@ -14,7 +14,7 @@ My personal bash configuration files. Mostly revolving around `git` and `ruby`. 
 ## Installation
 
 ```bash
-git clone git://github.com/viseztrance/.bash.d.git ~/.bash.d && sh ~/.bash.d/install
+git clone git://github.com/viseztrance/.bash.d.git ~/.bash.d && ~/.bash.d/install
 ```
 
 ## License
