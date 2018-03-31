@@ -17,6 +17,12 @@ My personal bash configuration files. Mostly revolving around `git` and `ruby`. 
 git clone git://github.com/viseztrance/.bash.d.git ~/.bash.d && ~/.bash.d/install
 ```
 
+## Extras
+
+```bash
+dnf install autojump
+```
+
 ## License
 
 This package is licensed under the MIT license and/or the Creative Commons Attribution-ShareAlike.

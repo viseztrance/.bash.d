@@ -72,7 +72,7 @@ __get_working_directory() {
     local path
     local max=$(printf %.$2f $(bc <<< "$(tput cols) * 0.5"))
     if __is_git_repo; then
-        prefix="↳"
+        prefix="⤷"
         path=$(basename $(__get_git_root))/$(__get_git_relative_path)
     else
         prefix="➜"
@@ -88,4 +88,4 @@ set_prompt() {
     PS1="$(__get_working_directory) $(__get_development_prompt)"
 }
 
-PROMPT_COMMAND=set_prompt
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND;set_prompt}"
