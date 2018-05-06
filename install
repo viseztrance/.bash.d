@@ -3,13 +3,24 @@
 declare color='\e[93m'
 declare wipe="\033[1m\033[0m"
 
-echo "source $HOME/.bash.d/boot" >> $HOME/.bashrc
-echo -e "Settings have been saved to your ${color}.bashrc${wipe} file."
+declare INSTALL_BOOT="source $HOME/.bash.d/boot"
 
-if [ ! -f $HOME/.inputrc ]; then
-    ln -s $HOME/.bash.d/dot-files/inputrc $HOME/.inputrc
+if grep -q "$INSTALL_BOOT" $HOME/.bash_history; then
+    echo $INSTALL_BOOT >> $HOME/.bashrc
+    echo -e "Boot settings have been saved to your ${color}.bashrc${wipe} file."
+else
+    echo -e "Boot settings found in ${color}${HOME}.bashrc${wipe}. Skipping ..."
 fi
 
-if [ ! -f $HOME/.gemrc ]; then
-    ln -s $HOME/.bash.d/dot-files/gemrc $HOME/.gemrc
-fi
+for source_file in $HOME/.bash.d/dot-files/*; do
+    target_file=$HOME/.$(basename $source_file)
+    if [ ! -f $target_file ]; then
+        echo -e "Linking ${color}${source_file}${wipe} to ${color}${target_file}${wipe}"
+        ln -s $source_file $target_file
+    else
+        echo -e "${color}${target_file}${wipe} already exists. Skipping ..."
+    fi
+done
+
+unset source_file
+unset target_file
