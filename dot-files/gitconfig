@@ -1,3 +1,8 @@
 [user]
-	name = Daniel Mircea
-	email = daniel@viseztrance.com
+        name = Daniel Mircea
+        email = daniel@viseztrance.com
+[core]
+        excludesfile = ~/.gitignore_global
+[alias]
+        l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+        undo-last-commit = reset HEAD~
