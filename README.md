@@ -20,7 +20,7 @@ git clone git://github.com/viseztrance/.bash.d.git ~/.bash.d && ~/.bash.d/instal
 ## Extras
 
 ```bash
-dnf install autojump
+dnf install autojump hstr
 ```
 
 ## License
