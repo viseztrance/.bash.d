@@ -23,6 +23,8 @@ git clone git://github.com/viseztrance/.bash.d.git ~/.bash.d && ~/.bash.d/instal
 dnf install autojump hstr
 ```
 
+Source private and machine specific scripts from `~/.bash.custom`.
+
 ## License
 
 This package is licensed under the MIT license and/or the Creative Commons Attribution-ShareAlike.
