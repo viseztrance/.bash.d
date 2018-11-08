@@ -8,3 +8,4 @@
         br = branch
         r = reset
         undo-last-commit = reset HEAD~
+	discard = reset --hard @{u}
