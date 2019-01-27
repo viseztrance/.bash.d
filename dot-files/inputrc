@@ -3,6 +3,3 @@ set completion-ignore-case on
 
 # Treat hyphens and underscores the same
 set completion-map-case on
-
-# Run hstr on F3 key press
-"\eOR": "\C-ahh -- \C-j"

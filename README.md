@@ -19,10 +19,6 @@ git clone git://github.com/viseztrance/.bash.d.git ~/.bash.d && ~/.bash.d/instal
 
 ## Extras
 
-```bash
-dnf install autojump hstr
-```
-
 Source private and machine specific scripts from `~/.bash.custom`.
 
 ## License
