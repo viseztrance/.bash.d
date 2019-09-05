@@ -8,4 +8,5 @@
         br = branch
         r = reset
         undo-last-commit = reset HEAD~
-	discard = reset --hard @{u}
+        discard = reset --hard @{u}
+        lg = "log --graph --format=format:'%C(bold yellow)%h%C(reset) %C(red)🢒%C(reset) %C(bold white)%s%C(reset) %C(red)🢒%C(reset) %C(green)%an%C(reset) %C(red)🢒%C(reset) %C(dim white)%ar%C(reset)'"
