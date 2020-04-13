@@ -10,3 +10,8 @@
         undo-last-commit = reset HEAD~
         discard = reset --hard @{u}
         lg = "log --graph --format=format:'%C(bold yellow)%h%C(reset) %C(red)🢒%C(reset) %C(bold white)%s%C(reset) %C(red)🢒%C(reset) %C(green)%an%C(reset) %C(red)🢒%C(reset) %C(dim white)%ar%C(reset)'"
+[filter "lfs"]
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+        required = true
