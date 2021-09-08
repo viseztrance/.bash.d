@@ -1,0 +1,15 @@
+#!/bin/bash
+
+declare color='\e[93m'
+declare wipe="\033[1m\033[0m"
+
+__get_git_disposable_branches() {
+    git branch --merged | egrep -v "(^\*|master|main)"
+}
+
+echo -e "The following branches will be removed:"
+echo -e ${color}
+__get_git_disposable_branches
+echo -e ${wipe}
+
+confirm "Are you sure about this?" N && __get_git_disposable_branches | xargs git branch -d
