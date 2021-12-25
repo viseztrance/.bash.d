@@ -73,7 +73,7 @@ __get_working_directory() {
     local max=$(printf %.$2f $(bc <<< "$(tput cols) * 0.5"))
     if __is_git_repo; then
         prefix="⤷"
-        path=$(basename $(__get_git_root))/$(__get_git_relative_path)
+        path=$(basename "$(__get_git_root)")/$(__get_git_relative_path)
     else
         prefix="➜"
         path=${PWD/#$HOME/\~}
