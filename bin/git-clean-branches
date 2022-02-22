@@ -1,14 +1,20 @@
 #!/bin/bash
 
-declare color='\e[93m'
+declare warn_color='\e[93m'
+declare error_color='\e[91m'
 declare wipe="\033[1m\033[0m"
 
 __get_git_disposable_branches() {
     git branch --merged | egrep -v "(^\*|master|main)"
 }
 
+if [[ -z $(__get_git_disposable_branches) ]]; then
+    echo -e "${error_color}No deletable branches found${wipe}"
+    exit 1;
+fi
+
 echo -e "The following branches will be removed:"
-echo -e ${color}
+echo -e ${warn_color}
 __get_git_disposable_branches
 echo -e ${wipe}
 
