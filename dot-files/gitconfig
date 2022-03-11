@@ -1,6 +1,3 @@
-[user]
-        name = Daniel Mircea
-        email = daniel@viseztrance.com
 [core]
         excludesfile = ~/.gitignore_global
 [alias]

@@ -1,26 +1,60 @@
 #!/bin/bash
 
-declare color='\e[93m'
+declare notice_color='\e[93m'
+declare error_color='\e[91m'
 declare wipe="\033[1m\033[0m"
 
 declare INSTALL_BOOT="source $HOME/.bash.d/boot"
+declare INSTALL_FILE=$HOME/.bash_profile
+if [ -f $INSTALL_FILE ]; then
+    INSTALL_FILE=$HOME/.bashrc
+fi
 
-if grep -q "$INSTALL_BOOT" $HOME/.bashrc; then
-    printf "Boot settings found in ${color}${HOME}.bashrc${wipe}. Skipping ...\n"
+if [ ! -f $INSTALL_FILE ]; then
+    printf "${error_color}Can't install because neither .bashrc or .bash_profile were found in \"${HOME}\".${wipe}\n"
+    exit 1;
+fi
+
+if grep -q "$INSTALL_BOOT" $INSTALL_FILE; then
+    printf "Boot settings found in ${notice_color}${INSTALL_FILE}${wipe}. Skipping ...\n"
 else
-    echo $INSTALL_BOOT >> $HOME/.bashrc
-    printf "Boot settings have been saved to your ${color}.bashrc${wipe} file.\n"
+    echo $INSTALL_BOOT >> $INSTALL_FILE
+    printf "Boot settings have been saved to your ${notice_color}$(basename $INSTALL_FILE)${wipe} file.\n"
 fi
 
 for source_file in $HOME/.bash.d/dot-files/*; do
     target_file=$HOME/.$(basename $source_file)
     if [ ! -f $target_file ]; then
-        printf "Linking ${color}${source_file}${wipe} to ${color}${target_file}${wipe}\n"
+        printf "Linking ${notice_color}${source_file}${wipe} to ${notice_color}${target_file}${wipe}\n"
         ln -s $source_file $target_file
     else
-        printf "${color}${target_file}${wipe} already exists. Skipping ...\n"
+        printf "${notice_color}${target_file}${wipe} already exists. Skipping ...\n"
     fi
 done
 
 unset source_file
 unset target_file
+
+declare CUSTOM_SCRIPTS_DIR="$HOME/.bash.custom"
+if [ ! -d $CUSTOM_SCRIPTS_DIR ]; then
+    mkdir -p $CUSTOM_SCRIPTS_DIR
+fi
+
+declare CUSTOM_GIT_SETTINGS_FILE="$CUSTOM_SCRIPTS_DIR/git.bash"
+if [ ! -f $CUSTOM_GIT_SETTINGS_FILE ]; then
+    touch $CUSTOM_GIT_SETTINGS_FILE
+fi
+
+if ! grep -q "GIT_AUTHOR_NAME" $CUSTOM_GIT_SETTINGS_FILE; then
+    read -p "GIT user name: " git_user_name
+    echo "export GIT_AUTHOR_NAME=\"${git_user_name}\"" >> $CUSTOM_GIT_SETTINGS_FILE
+
+    printf "Wrote user name to ${notice_color}${CUSTOM_GIT_SETTINGS_FILE}${wipe}\n"
+fi
+
+if ! grep -q "export EMAIL" $CUSTOM_GIT_SETTINGS_FILE; then
+    read -p "GIT email: " git_email
+    echo "export EMAIL=\"${git_email}\"" >> $CUSTOM_GIT_SETTINGS_FILE
+
+    printf "Wrote email to ${notice_color}${CUSTOM_GIT_SETTINGS_FILE}${wipe}\n"
+fi
