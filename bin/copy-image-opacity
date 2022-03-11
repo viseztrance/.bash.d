@@ -6,7 +6,7 @@ if ! [ -x "$(command -v convert)" ]; then
 fi
 
 if [ -z $1 ] || [ -z $2 ] || [ -z $3 ]; then
-    echo -e "All three arguments need to be provided - opaque image file, transparent mask file and save file location (png)." 1>&2;
+    printf "All three arguments need to be provided - opaque image file, transparent mask file and save file location (png).\n" 1>&2;
     exit 1;
 fi
 

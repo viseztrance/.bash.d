@@ -4,7 +4,7 @@ fi
 
 j () {
     if ! [ -x "$(command -v autojump)" ]; then
-        echo -e "\\033[31mautojump is not installed\\033[0m"
+        printf "\\033[31mautojump is not installed\\033[0m\n"
         return
     fi
 
@@ -15,9 +15,9 @@ j () {
     output="$(autojump ${@})";
     if [[ -d "${output}" ]]; then
         if [ -t 1 ]; then
-            echo -e "\\033[38;05;210m⇒\\033[0m \\033[92m${output}\\033[0m";
+            printf "\\033[38;05;210m⇒\\033[0m \\033[92m${output}\\033[0m\n";
         else
-            echo -e "${output}";
+            printf "${output}\n";
         fi;
         cd "${output}";
     else

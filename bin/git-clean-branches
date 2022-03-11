@@ -9,13 +9,13 @@ __get_git_disposable_branches() {
 }
 
 if [[ -z $(__get_git_disposable_branches) ]]; then
-    echo -e "${error_color}No deletable branches found${wipe}"
+    printf "${error_color}No deletable branches found${wipe}\n"
     exit 1;
 fi
 
-echo -e "The following branches will be removed:"
-echo -e ${warn_color}
+printf "The following branches will be removed:"
+printf "${warn_color}\n"
 __get_git_disposable_branches
-echo -e ${wipe}
+printf "${wipe}\n"
 
 confirm "Are you sure about this?" N && __get_git_disposable_branches | xargs git branch -d
