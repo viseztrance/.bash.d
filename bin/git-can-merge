@@ -1,0 +1,14 @@
+#!/bin/bash
+
+declare notice_color='\e[92m'
+declare error_color='\e[91m'
+declare wipe="\033[1m\033[0m"
+
+git merge $1 --no-ff --no-commit
+if [ $? -eq 1 ]; then
+    printf "${notice_color}Can merge without conflicts${wipe}\n"
+else
+    printf "${error_color}Can't merge cleanly due to conflicts${wipe}\n"
+fi
+
+git merge --abort
