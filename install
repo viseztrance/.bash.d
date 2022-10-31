@@ -6,7 +6,7 @@ declare wipe="\033[1m\033[0m"
 
 declare INSTALL_BOOT="source $HOME/.bash.d/boot"
 declare INSTALL_FILE=$HOME/.bash_profile
-if [ -f $INSTALL_FILE ]; then
+if [ ! -f $INSTALL_FILE ]; then
     INSTALL_FILE=$HOME/.bashrc
 fi
 

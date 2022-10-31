@@ -2,6 +2,10 @@ if [ -f /usr/share/autojump/autojump.bash ]; then
     source /usr/share/autojump/autojump.bash
 fi
 
+if [ -f /opt/homebrew/etc/profile.d/autojump.sh ]; then
+    source /opt/homebrew/etc/profile.d/autojump.sh
+fi
+
 j () {
     if ! [ -x "$(command -v autojump)" ]; then
         printf "\\033[31mautojump is not installed\\033[0m\n"
